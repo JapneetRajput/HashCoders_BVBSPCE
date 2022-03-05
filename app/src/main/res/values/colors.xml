@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="border">#560C0C0C</color>
     <color name="wave">#D7BDE2</color>
+    <color name="colorPrimary">#9C27B0</color>
+    <color name="colorPrimaryDark">#9C27B0</color>
+    <color name="colorAccent">#9C27B0</color>
+    <color name="colorBackgroundshape">#9C27B0</color>
+    <color name="colorTextHeader">#FFFFFF</color>
+    <color name="colorWhite">#F3EEEE</color>
+    <color name="colorText">#111</color>
 </resources>

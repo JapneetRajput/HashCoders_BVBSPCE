@@ -8,10 +8,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 public class HomeActivity extends AppCompatActivity {
-    TextView textView,profile,leave,noticeBoard;
+    TextView textView,leave;
+    ImageButton profile,noticeBoard;
     Button mainAct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +25,11 @@ public class HomeActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView3);
         leave = findViewById(R.id.leave);
         profile = findViewById(R.id.profile);
+        Glide.with(this).load(R.drawable.profile).into(profile);
+
         noticeBoard = findViewById(R.id.notice);
+        Glide.with(this).load(R.drawable.ongoing).into(noticeBoard);
+
         mainAct=findViewById(R.id.mainAct);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override

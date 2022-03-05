@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/bg_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie"
+            android:layout_width="160dp"
+            android:layout_height="123dp"
+            android:layout_alignStart="@+id/textView5"
+            android:layout_alignEnd="@+id/textView5"
+            android:layout_marginStart="131dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="-116dp"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/dashboard" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="173dp"
+            android:layout_height="50dp"
+            android:text="Dashboard"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -19,48 +55,85 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.876" />
 
-    <TextView
-        android:id="@+id/notice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#E15555"
-        android:gravity="center_horizontal"
-        android:inputType="text"
-        android:padding="10dp"
-        android:text="Project Board"
-        android:textColor="#272424"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:drawableTopCompat="@drawable/imageedit_11_6589463763"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+    <!--        <TextView-->
+<!--        android:id="@+id/profile"-->
+<!--        android:layout_width="160dp"-->
+<!--        android:layout_height="156dp"-->
+<!--        android:background="#CFBC10"-->
+<!--        android:gravity="center_horizontal|top"-->
+<!--        android:paddingTop="45dp"-->
+<!--        android:scaleX="1"-->
+<!--        android:scaleY="1"-->
+<!--        android:text="Profile"-->
+<!--        app:drawableTopCompat="@drawable/imageedit_14_5874659451"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.12"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.3" />-->
 
-    <TextView
-        android:id="@+id/profile"
-        android:layout_width="160dp"
-        android:layout_height="156dp"
-        android:background="#CFBC10"
-        android:gravity="center_horizontal|top"
-        android:paddingTop="45dp"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:text="Profile"
-        app:drawableTopCompat="@drawable/imageedit_14_5874659451"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+<!--    <TextView-->
+<!--        android:id="@+id/notice"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#E15555"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:inputType="text"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="Project Board"-->
+<!--        android:textColor="#272424"-->
+<!--        android:textStyle="bold"-->
+<!--        android:visibility="visible"-->
+<!--        app:drawableTopCompat="@drawable/imageedit_11_6589463763"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.872"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.323" />-->
+
+
+    <ImageButton
+        android:id="@+id/notice"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="344dp"
+        android:background="@color/white"
+        android:baselineAlignBottom="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ongoing"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.796"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="216dp"
+        android:background="@color/white"
+        android:baselineAlignBottom="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/profile"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.796"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
 
     <TextView
         android:id="@+id/on_projects"
-        android:layout_width="160dp"
-        android:layout_height="156dp"
+        android:layout_width="112dp"
+        android:layout_height="92dp"
         android:background="#4CAF50"
         android:gravity="center_horizontal|top"
         android:paddingTop="1dp"
@@ -70,15 +143,15 @@
         app:drawableTopCompat="@drawable/imageedit_4_6974292253"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
+        app:layout_constraintVertical_bias="0.744" />
 
     <TextView
         android:id="@+id/leave"
-        android:layout_width="160dp"
-        android:layout_height="156dp"
+        android:layout_width="96dp"
+        android:layout_height="87dp"
         android:background="#5AB0D6"
         android:gravity="center_horizontal|top"
         android:paddingTop="10dp"
@@ -89,23 +162,10 @@
         app:drawableTopCompat="@drawable/imageedit_2_3081268977"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.206"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dashboard"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.914" />
 
     <Button
         android:id="@+id/mainAct"
@@ -120,3 +180,6 @@
         app:layout_constraintVertical_bias="0.945" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
