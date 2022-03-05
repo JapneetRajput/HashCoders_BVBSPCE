@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Your Query Buddy</string>
+    <string name="hint_resource">Choose Type</string>
+    <string-array name="levels">
+        <item>Choose Type</item>
+        <item>Educator</item>
+        <item>Student</item>
+        <!--        <item>Employee</item>-->
+    </string-array>
+</resources>
