@@ -166,7 +166,7 @@ public class MyProjects extends AppCompatActivity {
     private void EventChangeListener() {
 
         db.collection("Projects")
-                .whereEqualTo("uid",uid)
+                .whereEqualTo("uidProject",uid)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

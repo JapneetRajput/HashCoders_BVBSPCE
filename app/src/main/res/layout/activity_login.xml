@@ -6,6 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:layout_marginBottom="470dp"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.391"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/login" />
+
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/wave_bottom"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="170dp"-->
+<!--        android:layout_marginBottom="4dp"-->
+<!--        app:layout_constraintBaseline_toBottomOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.004"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_rawRes="@raw/wavebottom" />-->
+
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/wave_top"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="170dp"-->
+<!--        android:layout_marginBottom="560dp"-->
+<!--        app:layout_constraintBaseline_toBottomOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.997"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_rawRes="@raw/wavetop" />-->
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_particles2"
+        android:layout_width="wrap_content"
+        android:layout_height="270dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.793"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/particles" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_particles"
+        android:layout_width="wrap_content"
+        android:layout_height="270dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/particles" />
 
     <TextView
         android:id="@+id/registerNow"

@@ -48,7 +48,7 @@ public class Starred extends AppCompatActivity {
     String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     ProgressDialog progressDialog;
     DatabaseReference noticeCounT= FirebaseDatabase.getInstance().getReference();
-    Integer count;
+//    Integer count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,19 +95,19 @@ public class Starred extends AppCompatActivity {
 
         EventChangeListener();
 
-        noticeCounT.child("count").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    count = snapshot.getValue(Integer.class);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        noticeCounT.child("count").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()) {
+//                    count = snapshot.getValue(Integer.class);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 
 
@@ -145,73 +145,128 @@ public class Starred extends AppCompatActivity {
 //                });
 //                starCount=1;
 
-                noticeCounT.child("noticeCount").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()) {
-                            count = snapshot.getValue(Integer.class);
-                            String Position = (count+1) + "";
-                            db.collection("Notices").document(Position)
-                                    .get()
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            Boolean isFavourite = documentSnapshot.getBoolean("isFavourite");
-                                            String title = documentSnapshot.getString("title");
-                                            String desc = documentSnapshot.getString("description");
-                                            String uidNotice = documentSnapshot.getString("uid");
-                                            Toast.makeText(Starred.this, "Favourite: "+isFavourite, Toast.LENGTH_SHORT).show();
-                                            new AlertDialog.Builder(Starred.this)
-                                                    .setMessage("Do you want to remove this from favourites?")
-                                                    .setCancelable(true)
-                                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            Map<String, Object> notices = new HashMap<>();
-                                                            notices.put("isFavourite", false);
-                                                            notices.put("description", desc);
-                                                            notices.put("title", title);
-                                                            notices.put("uid",uidNotice);
-                                                            notices.put("count",count);
-//                                                position++;
-//                                                String counT = count.toString();
+//                noticeCounT.child("projectCount").addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if(snapshot.exists()) {
+//                            count = snapshot.getValue(Integer.class);
+//                            String Position = (count) + "";
+//                            db.collection("Projects").document(Position)
+//                                    .get()
+//                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                        @Override
+//                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                                            String title = documentSnapshot.getString("title");
+//                                            String desc = documentSnapshot.getString("description");
+//                                            String uidNotice = documentSnapshot.getString("uidProject");
+//                                            String uidFav = documentSnapshot.getString("uidFav");
+//                                            if (uidFav.equals(uidNotice + true)) {
+//                                                new AlertDialog.Builder(Starred.this)
+//                                                    .setMessage("Do you want to remove this from favourites?")
+//                                                    .setCancelable(true)
+//                                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                                                        @Override
+//                                                        public void onClick(DialogInterface dialog, int which) {
+//                                                            Map<String, Object> notices = new HashMap<>();
+//                                                            notices.put("description", desc);
+//                                                            notices.put("title", title);
+//                                                            notices.put("uidProject", uidNotice);
+//                                                            notices.put("uidFav", uidNotice+false);
+//                                                            notices.put("count", count);
+//
+//                                                            db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                                                @Override
+//                                                                public void onComplete(@NonNull Task<Void> task) {
+//                                                                    if (task.isSuccessful()) {
+//                                                                        Toast.makeText(Starred.this, "Updated successfully", Toast.LENGTH_SHORT).show();
+//                                                                        startActivity(new Intent(Starred.this, Starred.class));
+//                                                                        finish();
+//                                                                    } else {
+//                                                                        Toast.makeText(Starred.this, "Update failed", Toast.LENGTH_SHORT).show();
+//                                                                    }
+//                                                                }
+//                                                            });
+//                                                        }
+//                                                    })
+//                                                    .setNegativeButton("No", null)
+//                                                    .show();
+//                                            }
+//                                            else{
+//                                                Toast.makeText(Starred.this, "Favourite "+ false, Toast.LENGTH_SHORT).show();
+//                                            }
+//                                        }
+//                                    })
+//                                    .addOnFailureListener(new OnFailureListener() {
+//                                        @Override
+//                                        public void onFailure(@NonNull Exception e) {
+//                                            Toast.makeText(Starred.this, "Failed to fetch data" + e, Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    });
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
 
-//                                                    Map<String, Object> noticeCount = new HashMap<>();
-//                                                    noticeCount.put("starCount", starCount);
-//                                                    noticeCounT.child("Users").child(uid).updateChildren(noticeCount);
+                String Position = (position+1) + "";
+                Toast.makeText(Starred.this, Position, Toast.LENGTH_SHORT).show();
+                db.collection("Projects").document(Position)
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                            Boolean isFavourite = documentSnapshot.getBoolean("isFavourite");
+                                String title = documentSnapshot.getString("title");
+                                String desc = documentSnapshot.getString("description");
+                                String uidNotice = documentSnapshot.getString("uidProject");
+                                String uidFav = documentSnapshot.getString("uidFav");
+                                if (uidFav.equals(uidNotice+true)) {
+                                    Toast.makeText(Starred.this, "Favourite: "+true, Toast.LENGTH_SHORT).show();
+                                    new AlertDialog.Builder(Starred.this)
+                                        .setMessage("Do you want to remove this from favourites?")
+                                        .setCancelable(true)
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Map<String, Object> notices = new HashMap<>();
+//                                            notices.put("isFavourite", true);
+                                                notices.put("description", desc);
+                                                notices.put("title", title);
+                                                notices.put("uidFav",uidNotice+false);
+                                                notices.put("count",position+1);
+                                                notices.put("uidProject",uidNotice);
 
-                                                            db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                @Override
-                                                                public void onComplete(@NonNull Task<Void> task) {
-                                                                    if (task.isSuccessful()) {
-                                                                        Toast.makeText(Starred.this, "Updated successfully", Toast.LENGTH_SHORT).show();
-                                                                        startActivity(new Intent(Starred.this, Starred.class));
-                                                                        finish();
-                                                                    } else {
-                                                                        Toast.makeText(Starred.this, "Update failed", Toast.LENGTH_SHORT).show();
-                                                                    }
-                                                                }
-                                                            });
+                                                db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Toast.makeText(Starred.this, "Updated successfully", Toast.LENGTH_SHORT).show();
+//                                                            startActivity(new Intent(Starred.this, Starred.class));
+//                                                            finish();
+                                                        } else {
+                                                            Toast.makeText(Starred.this, "Update failed", Toast.LENGTH_SHORT).show();
                                                         }
-                                                    })
-                                                    .setNegativeButton("No", null)
-                                                    .show();
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(Starred.this, "Failed to fetch data" + e, Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                                                    }
+                                                });
+                                            }
+                                        })
+                                        .setNegativeButton("No", null)
+                                        .show();
+                                }
+                                else{
+                                    Toast.makeText(Starred.this, "Favourite "+ false, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Starred.this, "Failed to fetch data" + e, Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         };
     }
@@ -220,6 +275,7 @@ public class Starred extends AppCompatActivity {
 
         db.collection("Projects")
                 .whereEqualTo("uidFav",uid+true)
+                .orderBy("count")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
