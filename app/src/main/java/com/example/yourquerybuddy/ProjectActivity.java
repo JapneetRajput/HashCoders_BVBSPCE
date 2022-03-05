@@ -139,7 +139,7 @@ public class ProjectActivity extends AppCompatActivity {
                             notices.put("title", title);
                             notices.put("description", desc);
                             notices.put("uidFav", uid+false);
-                            notices.put("uid", uid);
+                            notices.put("uidProject", uid);
                             count++;
                             notices.put("count",count);
 //                            notices.put("isFavourite",false);
@@ -245,7 +245,7 @@ public class ProjectActivity extends AppCompatActivity {
 //                });
                 String Position = (position+1) + "";
                 Toast.makeText(ProjectActivity.this, Position, Toast.LENGTH_SHORT).show();
-                db.collection("Notices").document(Position)
+                db.collection("Projects").document(Position)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
@@ -253,9 +253,9 @@ public class ProjectActivity extends AppCompatActivity {
 //                            Boolean isFavourite = documentSnapshot.getBoolean("isFavourite");
                             String title = documentSnapshot.getString("title");
                             String desc = documentSnapshot.getString("description");
-                            String uidNotice = documentSnapshot.getString("uidNotice");
+                            String uidNotice = documentSnapshot.getString("uidProject");
                             String uidFav = documentSnapshot.getString("uidFav");
-                            if (uidFav.equals(uid+false)) {
+                            if (uidFav.equals(uidNotice+false)) {
                                 Toast.makeText(ProjectActivity.this, "Favourite: "+false, Toast.LENGTH_SHORT).show();
                                 new AlertDialog.Builder(ProjectActivity.this)
                                     .setMessage("Do you want to add this to favourites?")
@@ -269,7 +269,7 @@ public class ProjectActivity extends AppCompatActivity {
                                             notices.put("title", title);
                                             notices.put("uidFav",uidNotice+true);
                                             notices.put("count",position+1);
-                                            notices.put("uid",uidNotice);
+                                            notices.put("uidProject",uidNotice);
 //                                                position++;
 //                                                String counT = count.toString();
 
@@ -277,7 +277,7 @@ public class ProjectActivity extends AppCompatActivity {
 //                                                    noticeCount.put("starCount", starCount);
 //                                                    noticeCounT.child("Users").child(uid).updateChildren(noticeCount);
 
-                                            db.collection("Notices").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
@@ -311,7 +311,7 @@ public class ProjectActivity extends AppCompatActivity {
 
     private void EventChangeListener() {
 
-        db.collection("Notices")
+        db.collection("Projects")
                 .orderBy("count")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
