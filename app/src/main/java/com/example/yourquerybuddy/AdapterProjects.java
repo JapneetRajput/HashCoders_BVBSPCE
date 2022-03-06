@@ -39,6 +39,7 @@ public class AdapterProjects extends RecyclerView.Adapter<AdapterProjects.MyView
         ProjectList projectList = list.get(position);
         holder.title.setText(projectList.getCount()+" "+projectList.getTitle());
         holder.description.setText(projectList.getDescription());
+        holder.link.setText(projectList.getProjectLink());
     }
 
     @Override
@@ -48,11 +49,12 @@ public class AdapterProjects extends RecyclerView.Adapter<AdapterProjects.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView description, title;
+        TextView description, title, link;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title=itemView.findViewById(R.id.NoticeTitle);
             description=itemView.findViewById(R.id.NoticeDesc);
+            link=itemView.findViewById(R.id.NoticeLink);
             itemView.setOnClickListener(this);
         }
 
@@ -64,5 +66,6 @@ public class AdapterProjects extends RecyclerView.Adapter<AdapterProjects.MyView
 
     public interface RecyclerViewClickListener{
         void onClick(View v, int position);
+        void onLongClick(View v, int position);
     }
 }

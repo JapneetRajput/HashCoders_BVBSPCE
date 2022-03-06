@@ -101,6 +101,7 @@ public class MyProjects extends AppCompatActivity {
                 TextView heading = dialog.findViewById(R.id.headingCrud);
                 TextInputEditText noticeTitle=dialog.findViewById(R.id.noticeTitle);
                 TextInputEditText noticeDescription=dialog.findViewById(R.id.noticeDescription);
+                TextInputEditText noticeLink=dialog.findViewById(R.id.noticeLink);
                 Button actionButton=dialog.findViewById(R.id.addNotice);
                 actionButton.setText("Update Project");
                 heading.setText("Update Project");
@@ -119,6 +120,7 @@ public class MyProjects extends AppCompatActivity {
                                         String description = noticeDescription.getText().toString();
                                         String uidNotice = documentSnapshot.getString("uidProject");
                                         String uidFav = documentSnapshot.getString("uidFav");
+                                        String link = Objects.requireNonNull(noticeLink.getText()).toString();
 //                                Integer count = documentSnapshot.get("count",Integer.class);
 
                                         Map<String, Object> notices = new HashMap<>();
@@ -127,7 +129,8 @@ public class MyProjects extends AppCompatActivity {
                                         notices.put("title", title);
                                         notices.put("uidProject",uidNotice);
                                         notices.put("uidFav",uidFav);
-                                        notices.put("count",Position);
+                                        notices.put("projectLink", link);
+                                        notices.put("count",position+1);
 
                                         db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -159,6 +162,11 @@ public class MyProjects extends AppCompatActivity {
 //                intent.putExtra("description",list.get(position).getDescription());
 //                startActivity(intent);
 //                layout.addView(v);
+            }
+
+            @Override
+            public void onLongClick(View v, int position) {
+
             }
         };
     }

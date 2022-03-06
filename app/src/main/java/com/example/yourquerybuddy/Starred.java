@@ -224,6 +224,7 @@ public class Starred extends AppCompatActivity {
                                 String desc = documentSnapshot.getString("description");
                                 String uidNotice = documentSnapshot.getString("uidProject");
                                 String uidFav = documentSnapshot.getString("uidFav");
+                                String projectLink = documentSnapshot.getString("projectLink");
                                 if (uidFav.equals(uidNotice+true)) {
                                     Toast.makeText(Starred.this, "Favourite: "+true, Toast.LENGTH_SHORT).show();
                                     new AlertDialog.Builder(Starred.this)
@@ -239,6 +240,7 @@ public class Starred extends AppCompatActivity {
                                                 notices.put("uidFav",uidNotice+false);
                                                 notices.put("count",count);
                                                 notices.put("uidProject",uidNotice);
+                                                notices.put("projectLink",projectLink);
 
                                                 db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
@@ -268,6 +270,11 @@ public class Starred extends AppCompatActivity {
                                 Toast.makeText(Starred.this, "Failed to fetch data" + e, Toast.LENGTH_SHORT).show();
                             }
                         });
+            }
+
+            @Override
+            public void onLongClick(View v, int position) {
+
             }
         };
     }

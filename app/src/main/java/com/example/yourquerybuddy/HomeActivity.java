@@ -37,6 +37,13 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this,ProfileActivity.class));
+                finish();
+            }
+        });
         noticeBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

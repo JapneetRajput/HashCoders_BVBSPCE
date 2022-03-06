@@ -80,8 +80,6 @@ public class ProjectActivity extends AppCompatActivity {
 
         OpenDialog=findViewById(R.id.openDialogButton);
 
-
-
 //        noticeCounT.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -100,6 +98,7 @@ public class ProjectActivity extends AppCompatActivity {
 //            }
 //        });
 //
+
         OpenDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +107,7 @@ public class ProjectActivity extends AppCompatActivity {
 
                 TextInputEditText noticeTitle=dialog.findViewById(R.id.noticeTitle);
                 TextInputEditText noticeDescription=dialog.findViewById(R.id.noticeDescription);
+                TextInputEditText noticeLink=dialog.findViewById(R.id.noticeLink);
                 Button actionButton=dialog.findViewById(R.id.addNotice);
                 noticeCounT= FirebaseDatabase.getInstance().getReference();
 
@@ -128,9 +128,10 @@ public class ProjectActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        String title,desc;
+                        String title,desc,link;
                         title = Objects.requireNonNull(noticeTitle.getText()).toString();
                         desc = Objects.requireNonNull(noticeDescription.getText()).toString();
+                        link = Objects.requireNonNull(noticeLink.getText()).toString();
                         if(title.isEmpty() || desc.isEmpty()){
                             Toast.makeText(ProjectActivity.this, "All fields are mandatory!", Toast.LENGTH_SHORT).show();
                         }
@@ -140,6 +141,7 @@ public class ProjectActivity extends AppCompatActivity {
                             notices.put("description", desc);
                             notices.put("uidFav", uid+false);
                             notices.put("uidProject", uid);
+                            notices.put("projectLink", link);
                             count++;
                             notices.put("count",count);
 //                            notices.put("isFavourite",false);
@@ -255,6 +257,7 @@ public class ProjectActivity extends AppCompatActivity {
                             String desc = documentSnapshot.getString("description");
                             String uidNotice = documentSnapshot.getString("uidProject");
                             String uidFav = documentSnapshot.getString("uidFav");
+                            String projectLink = documentSnapshot.getString("projectLink");
                             if (uidFav.equals(uidNotice+false)) {
                                 Toast.makeText(ProjectActivity.this, "Favourite: "+false, Toast.LENGTH_SHORT).show();
                                 new AlertDialog.Builder(ProjectActivity.this)
@@ -270,6 +273,7 @@ public class ProjectActivity extends AppCompatActivity {
                                             notices.put("uidFav",uidNotice+true);
                                             notices.put("count",position+1);
                                             notices.put("uidProject",uidNotice);
+                                            notices.put("projectLink",projectLink);
 //                                                position++;
 //                                                String counT = count.toString();
 
@@ -305,6 +309,11 @@ public class ProjectActivity extends AppCompatActivity {
                             Toast.makeText(ProjectActivity.this, "Failed to fetch data" + e, Toast.LENGTH_SHORT).show();
                         }
                     });
+            }
+
+            @Override
+            public void onLongClick(View v, int position) {
+
             }
         };
     }

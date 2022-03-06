@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView e_id,fname,em,username,userType;
+    TextView fname,em,username,userType;
     Button logout;
 //    FloatingActionButton addEmployee;
     FirebaseUser user;
@@ -32,7 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         getSupportActionBar().hide();
-        e_id=findViewById(R.id.id);
         fname=findViewById(R.id.fname);
         em=findViewById(R.id.em);
         username=findViewById(R.id.user);
@@ -67,7 +66,6 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
-
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
