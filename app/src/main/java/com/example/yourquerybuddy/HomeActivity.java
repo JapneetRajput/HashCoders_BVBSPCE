@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 public class HomeActivity extends AppCompatActivity {
-    TextView textView,leave;
-    ImageButton profile,noticeBoard;
+    TextView textView;
+    ImageButton profile,noticeBoard, leave;
     Button mainAct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
         textView = findViewById(R.id.textView3);
+
         leave = findViewById(R.id.leave);
+        Glide.with(this).load(R.drawable.discuss).into(leave);
+
         profile = findViewById(R.id.profile);
         Glide.with(this).load(R.drawable.profile).into(profile);
 
