@@ -121,6 +121,7 @@ public class MyProjects extends AppCompatActivity {
                                         String uidNotice = documentSnapshot.getString("uidProject");
                                         String uidFav = documentSnapshot.getString("uidFav");
                                         String link = Objects.requireNonNull(noticeLink.getText()).toString();
+                                        String commentCount = documentSnapshot.getString("commentCount");
 //                                Integer count = documentSnapshot.get("count",Integer.class);
 
                                         Map<String, Object> notices = new HashMap<>();
@@ -131,6 +132,7 @@ public class MyProjects extends AppCompatActivity {
                                         notices.put("uidFav",uidFav);
                                         notices.put("projectLink", link);
                                         notices.put("count",position+1);
+                                        notices.put("commentCount",commentCount);
 
                                         db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override

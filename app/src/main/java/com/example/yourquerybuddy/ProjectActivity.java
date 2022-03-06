@@ -203,7 +203,10 @@ public class ProjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v, int position){
                 Toast.makeText(ProjectActivity.this, "Longggg", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ProjectActivity.this,CommentPanel.class));
+                Integer count = list.get(position).getCount();
+                Intent intent = new Intent(ProjectActivity.this,CommentPanel.class);
+                intent.putExtra("count",count+1);
+                startActivity(intent);
                 finish();
             }
 
@@ -265,6 +268,7 @@ public class ProjectActivity extends AppCompatActivity {
                                 String uidNotice = documentSnapshot.getString("uidProject");
                                 String uidFav = documentSnapshot.getString("uidFav");
                                 String projectLink = documentSnapshot.getString("projectLink");
+                                String commentCount = documentSnapshot.getString("commentCount");
                                 if (uidFav.equals(uidNotice+false)) {
                                     Toast.makeText(ProjectActivity.this, "Favourite: "+false, Toast.LENGTH_SHORT).show();
                                     new AlertDialog.Builder(ProjectActivity.this)
@@ -281,6 +285,7 @@ public class ProjectActivity extends AppCompatActivity {
                                                     notices.put("count",position+1);
                                                     notices.put("uidProject",uidNotice);
                                                     notices.put("projectLink",projectLink);
+                                                    notices.put("commentCount",commentCount);
 //                                                position++;
 //                                                String counT = count.toString();
 

@@ -4,15 +4,18 @@ import static android.content.ContentValues.TAG;
 
         import androidx.annotation.NonNull;
         import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
         import android.content.Intent;
         import android.graphics.Color;
-        import android.os.Bundle;
+import android.os.Build;
+import android.os.Bundle;
         import android.util.Log;
 import android.view.View;
         import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
+import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
         import android.widget.Spinner;
         import android.widget.TextView;
@@ -26,6 +29,7 @@ import com.google.firebase.auth.AuthResult;
         import com.google.firebase.auth.FirebaseUser;
         import com.google.firebase.database.DatabaseReference;
         import com.google.firebase.database.FirebaseDatabase;
+import com.scwang.wave.MultiWaveHeader;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -38,13 +42,30 @@ public class RegisterActivity extends AppCompatActivity {
 
     FirebaseUser user;
     private FirebaseAuth auth;
-
+    Window window;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        Log.i(TAG, "onCreate: 1");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getSupportActionBar().hide();
+        getSupportActionBar().hide();//STATUS BAR COLOR:
+        if (Build.VERSION.SDK_INT >= 21) {
+            window = this.getWindow();
+            window.setStatusBarColor(this.getResources().getColor(R.color.white));
+        }
+
+        MultiWaveHeader waveFooter;
+        waveFooter = findViewById(R.id.wave_footer);
+//        waveFooter = findViewById(R.id.wave_footer);
+
+        waveFooter.setVelocity(1);
+        waveFooter.setProgress(1);
+        waveFooter.isRunning();
+        waveFooter.setGradientAngle(45);
+        waveFooter.setStartColor(Color.parseColor("#E0F1F8"));
+        waveFooter.setCloseColor(Color.parseColor("#A569BD"));
+
         emailET= findViewById(R.id.email);
         firstNameET=findViewById(R.id.firstName);
         lastNameET=findViewById(R.id.lastName);
