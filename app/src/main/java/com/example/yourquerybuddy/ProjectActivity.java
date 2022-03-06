@@ -202,6 +202,13 @@ public class ProjectActivity extends AppCompatActivity {
         listener=new AdapterProjects.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position){
+                Toast.makeText(ProjectActivity.this, "Longggg", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ProjectActivity.this,CommentPanel.class));
+                finish();
+            }
+
+            @Override
+            public void onLongClick(View v, int position) {
 //                Dialog dialog = new Dialog(NoticeActivity.this);
 //                dialog.setContentView(R.layout.notice_crud);
 //                TextView heading = dialog.findViewById(R.id.headingCrud);
@@ -248,32 +255,32 @@ public class ProjectActivity extends AppCompatActivity {
                 String Position = (position+1) + "";
                 Toast.makeText(ProjectActivity.this, Position, Toast.LENGTH_SHORT).show();
                 db.collection("Projects").document(Position)
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
 //                            Boolean isFavourite = documentSnapshot.getBoolean("isFavourite");
-                            String title = documentSnapshot.getString("title");
-                            String desc = documentSnapshot.getString("description");
-                            String uidNotice = documentSnapshot.getString("uidProject");
-                            String uidFav = documentSnapshot.getString("uidFav");
-                            String projectLink = documentSnapshot.getString("projectLink");
-                            if (uidFav.equals(uidNotice+false)) {
-                                Toast.makeText(ProjectActivity.this, "Favourite: "+false, Toast.LENGTH_SHORT).show();
-                                new AlertDialog.Builder(ProjectActivity.this)
-                                    .setMessage("Do you want to add this to favourites?")
-                                    .setCancelable(true)
-                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Map<String, Object> notices = new HashMap<>();
+                                String title = documentSnapshot.getString("title");
+                                String desc = documentSnapshot.getString("description");
+                                String uidNotice = documentSnapshot.getString("uidProject");
+                                String uidFav = documentSnapshot.getString("uidFav");
+                                String projectLink = documentSnapshot.getString("projectLink");
+                                if (uidFav.equals(uidNotice+false)) {
+                                    Toast.makeText(ProjectActivity.this, "Favourite: "+false, Toast.LENGTH_SHORT).show();
+                                    new AlertDialog.Builder(ProjectActivity.this)
+                                            .setMessage("Do you want to add this to favourites?")
+                                            .setCancelable(true)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Map<String, Object> notices = new HashMap<>();
 //                                            notices.put("isFavourite", true);
-                                            notices.put("description", desc);
-                                            notices.put("title", title);
-                                            notices.put("uidFav",uidNotice+true);
-                                            notices.put("count",position+1);
-                                            notices.put("uidProject",uidNotice);
-                                            notices.put("projectLink",projectLink);
+                                                    notices.put("description", desc);
+                                                    notices.put("title", title);
+                                                    notices.put("uidFav",uidNotice+true);
+                                                    notices.put("count",position+1);
+                                                    notices.put("uidProject",uidNotice);
+                                                    notices.put("projectLink",projectLink);
 //                                                position++;
 //                                                String counT = count.toString();
 
@@ -281,39 +288,34 @@ public class ProjectActivity extends AppCompatActivity {
 //                                                    noticeCount.put("starCount", starCount);
 //                                                    noticeCounT.child("Users").child(uid).updateChildren(noticeCount);
 
-                                            db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
-                                                        Toast.makeText(ProjectActivity.this, "Updated successfully", Toast.LENGTH_SHORT).show();
-                                                        startActivity(new Intent(ProjectActivity.this, Starred.class));
-                                                        finish();
-                                                    } else {
-                                                        Toast.makeText(ProjectActivity.this, "Update failed", Toast.LENGTH_SHORT).show();
-                                                    }
+                                                    db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                Toast.makeText(ProjectActivity.this, "Updated successfully", Toast.LENGTH_SHORT).show();
+                                                                startActivity(new Intent(ProjectActivity.this, Starred.class));
+                                                                finish();
+                                                            } else {
+                                                                Toast.makeText(ProjectActivity.this, "Update failed", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
                                                 }
-                                            });
-                                        }
-                                    })
-                                    .setNegativeButton("No", null)
-                                    .show();
+                                            })
+                                            .setNegativeButton("No", null)
+                                            .show();
+                                }
+                                else{
+                                    Toast.makeText(ProjectActivity.this, "Favourite "+ true, Toast.LENGTH_SHORT).show();
+                                }
                             }
-                            else{
-                                Toast.makeText(ProjectActivity.this, "Favourite "+ true, Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(ProjectActivity.this, "Failed to fetch data" + e, Toast.LENGTH_SHORT).show();
                             }
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(ProjectActivity.this, "Failed to fetch data" + e, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-            }
-
-            @Override
-            public void onLongClick(View v, int position) {
-
+                        });
             }
         };
     }
