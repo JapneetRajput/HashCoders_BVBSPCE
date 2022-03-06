@@ -14,15 +14,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 public class HomeActivity extends AppCompatActivity {
-    TextView textView;
     ImageButton profile,noticeBoard, leave;
-    Button mainAct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
-        textView = findViewById(R.id.textView3);
 
         leave = findViewById(R.id.leave);
         Glide.with(this).load(R.drawable.discuss).into(leave);
@@ -33,14 +30,6 @@ public class HomeActivity extends AppCompatActivity {
         noticeBoard = findViewById(R.id.notice);
         Glide.with(this).load(R.drawable.ongoing).into(noticeBoard);
 
-        mainAct=findViewById(R.id.mainAct);
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                finish();
-            }
-        });
         leave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,13 +41,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), ProjectActivity.class));
-                finish();
-            }
-        });
-        mainAct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 finish();
             }
         });

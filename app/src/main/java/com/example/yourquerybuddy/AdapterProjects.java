@@ -37,7 +37,7 @@ public class AdapterProjects extends RecyclerView.Adapter<AdapterProjects.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ProjectList projectList = list.get(position);
-        holder.title.setText(projectList.getTitle());
+        holder.title.setText(projectList.getCount()+" "+projectList.getTitle());
         holder.description.setText(projectList.getDescription());
     }
 

@@ -45,19 +45,6 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="34sp"
-        app:autoSizeTextType="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.876" />
-
     <!--        <TextView-->
 <!--        android:id="@+id/profile"-->
 <!--        android:layout_width="160dp"-->
@@ -185,7 +172,6 @@
         app:layout_constraintVertical_bias="0.796"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
-
     <TextView
         android:id="@+id/leave_text"
         android:layout_width="200dp"
@@ -237,18 +223,6 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.899" />-->
-
-    <Button
-        android:id="@+id/mainAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MainAct"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

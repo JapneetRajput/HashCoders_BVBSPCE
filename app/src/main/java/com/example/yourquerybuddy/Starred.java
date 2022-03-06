@@ -211,7 +211,8 @@ public class Starred extends AppCompatActivity {
 //                    }
 //                });
 
-                String Position = (position+1) + "";
+                Integer count = list.get(position).getCount();
+                String Position = (count) + "";
                 Toast.makeText(Starred.this, Position, Toast.LENGTH_SHORT).show();
                 db.collection("Projects").document(Position)
                         .get()
@@ -236,7 +237,7 @@ public class Starred extends AppCompatActivity {
                                                 notices.put("description", desc);
                                                 notices.put("title", title);
                                                 notices.put("uidFav",uidNotice+false);
-                                                notices.put("count",position+1);
+                                                notices.put("count",count);
                                                 notices.put("uidProject",uidNotice);
 
                                                 db.collection("Projects").document(Position).set(notices).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -244,8 +245,8 @@ public class Starred extends AppCompatActivity {
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(Starred.this, "Updated successfully", Toast.LENGTH_SHORT).show();
-//                                                            startActivity(new Intent(Starred.this, Starred.class));
-//                                                            finish();
+                                                            startActivity(new Intent(Starred.this, Starred.class));
+                                                            finish();
                                                         } else {
                                                             Toast.makeText(Starred.this, "Update failed", Toast.LENGTH_SHORT).show();
                                                         }
